@@ -8,5 +8,8 @@ def home(request):
     images= Images.objects.all()
     return render(request, "home.html")
 
-
+class Search(ListView):
+    model = Images
+    context_object_name = 'images_list'
+    template_name = 'search.html'
     
