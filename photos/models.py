@@ -39,3 +39,5 @@ class Location(models.Model):
     )
     imglocs = models.CharField(max_length = 255, choices = locations)
     
+    def __str__(self):
+        return f"{self.imglocs}"
