@@ -12,5 +12,9 @@ class Images(models.Model):
     def save_image(self):
         self.save()
 
+    @classmethod
+    def delete_image(self):
+        self.delete()
+
     def __str__(self):
         return self.name    
