@@ -4,6 +4,7 @@ from django.db import models
 class Images(models.Model):
     name = models.CharField(max_length = 60)
     image=models.ImageField(upload_to ='images/')
-
+    description = models.TextField()
+    image_location = models.ForeignKey('Location', on_delete=models.CASCADE,)
 
     
