@@ -16,5 +16,10 @@ class Images(models.Model):
     def delete_image(self):
         self.delete()
 
+    @classmethod
+    def filter_by_location(cls,location):
+        images_location = cls.objects.filter(image_location_name=location)
+        return images_location
+
     def __str__(self):
         return self.name    
