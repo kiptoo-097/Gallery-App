@@ -8,3 +8,9 @@ class Images(models.Model):
     image_location = models.ForeignKey('Location', on_delete=models.CASCADE,)
     image_category = models.ForeignKey('Category', on_delete=models.CASCADE,)
     
+    @classmethod
+    def save_image(self):
+        self.save()
+
+    def __str__(self):
+        return self.name    
