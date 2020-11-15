@@ -28,3 +28,14 @@ class Images(models.Model):
 
     def __str__(self):
         return self.name    
+
+class Location(models.Model):
+    locations=(
+        ('England','England'),
+        ('France','France'),
+        ('Germany','Germany'),
+        ('Italy','Italy'),
+        ('Spain','Spain'),
+    )
+    imglocs = models.CharField(max_length = 255, choices = locations)
+    
