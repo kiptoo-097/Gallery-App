@@ -13,3 +13,7 @@ class Search(ListView):
     context_object_name = 'images_list'
     template_name = 'search.html'
     
+    def get_queryset(self): 
+        query = self.request.GET.get('q')
+        if Images.objects.filter(Q(image_category=query)):
+            return Images.objects.filter(Q(image_category=query))
