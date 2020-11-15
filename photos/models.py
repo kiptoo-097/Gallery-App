@@ -6,5 +6,5 @@ class Images(models.Model):
     image=models.ImageField(upload_to ='images/')
     description = models.TextField()
     image_location = models.ForeignKey('Location', on_delete=models.CASCADE,)
-
+    image_category = models.ForeignKey('Category', on_delete=models.CASCADE,)
     
