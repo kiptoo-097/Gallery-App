@@ -21,5 +21,10 @@ class Images(models.Model):
         images_location = cls.objects.filter(image_location_name=location)
         return images_location
 
+    @classmethod 
+    def get_all_images(cls):
+        images=cls.objects.all()
+        return images
+
     def __str__(self):
         return self.name    
