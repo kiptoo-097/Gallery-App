@@ -6,7 +6,8 @@ from .models import Images
 # Create your views here.
 def home(request):
     images= Images.objects.all()
-    return render(request, "home.html")
+    return render(request, "index.html", {"images":images})
+
 
 class Search(ListView):
     model = Images
