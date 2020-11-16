@@ -8,6 +8,5 @@ from .views import Search,SearchLocation
 urlpatterns=[
     path('',views.home,name='home'),
     path('search/', Search.as_view(), name='search_results'),
-    
-    
+    path('search/', SearchLocation, name='search_by_location'),
 ]
