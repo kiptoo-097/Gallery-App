@@ -1,43 +1,69 @@
 from django.db import models
 
-# Create your models here.
-class Images(models.Model):
-    name = models.CharField(max_length = 60)
-    image=models.ImageField(upload_to ='images/')
-    description = models.TextField()
-    image_location = models.ForeignKey('Location', on_delete=models.CASCADE,)
-    image_category = models.ForeignKey('Category', on_delete=models.CASCADE,)
-    
+
+class Category(models.Model):
+    category_name = models.CharField(max_length =255)
+
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
+
+    def __str__(self):
+        return self.category_name
+
+
+class Location(models.Model):
+    location_name = models.CharField(max_length=255)
+
+    def save_location(self):
+        self.save()
+
+    def delete_location(self):
+        self.delete()
+
+    def __str__(self):
+        return self.location_name
+
     @classmethod
+    def update_location(cls, id, value):
+        cls.objects.filter(id=id).update(location_name=value)
+        
+class Image(models.Model):
+
+    image_name = models.CharField(max_length=255)
+    image_description = models.TextField(max_length = 255)
+    image_location = models.ForeignKey('Location',on_delete=models.CASCADE,)
+    image_category = models.ForeignKey('Category',on_delete=models.CASCADE,)
+    image = models.ImageField(upload_to = 'images/')
+
+
     def save_image(self):
         self.save()
 
-    @classmethod
     def delete_image(self):
         self.delete()
 
+    def update_image(self, Name=None, category=None):
+        self.image_name = Name if Name else self.Name
+        self.image_category = category if category else self.image_category 
+        self.save()
+
+    def __str__(self):
+        return self.image_name
+
     @classmethod
-    def filter_by_location(cls,location):
-        images_location = cls.objects.filter(image_location_name=location)
-        return images_location
-
-    @classmethod 
-    def get_all_images(cls):
-        images=cls.objects.all()
+    def search_category(cls,category):
+        images = cls.objects.filter(image_category__category_name__icontains=category)
         return images
+    @classmethod
+    def images(cls):
+        images = cls.objects.all()
+        return images 
 
-    def __str__(self):
-        return self.name    
+    @classmethod
+    def filterimageByLocation(cls,location):
+        location = cls.objects.filter(image_location__location_name = location).all()
+        return location    
 
-class Location(models.Model):
-    locations=(
-        ('England','England'),
-        ('France','France'),
-        ('Germany','Germany'),
-        ('Italy','Italy'),
-        ('Spain','Spain'),
-    )
-    imglocs = models.CharField(max_length = 255, choices = locations)
-    
-    def __str__(self):
-        return f"{self.imglocs}"
