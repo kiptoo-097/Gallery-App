@@ -8,7 +8,7 @@ This is a web application that enables users to view different categories of ima
 
 ### Deployed link
 
- 
+ https://kiptoogallery.herokuapp.com/
 
 ### Setup and Installation  
 To get the project .......  
@@ -56,6 +56,7 @@ Open the application on your browser `127.0.0.1:8000`.
 * [Django 3.1.3](https://docs.djangoproject.com/en/2.2/)  
 * [Heroku](https://heroku.com)  
 * [Git](for version control)
+* [Figma](https://www.figma.com/file/qxPBPSlm7mYZyuO5jqBgV7/Untitled?node-id=0%3A1)
   
   
 ## Known Bugs  
