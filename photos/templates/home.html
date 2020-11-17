@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<header>
+    <div class="container text-center">
+        <h1>GALLERY APP</h1>
+        <h2>They say a picture is worth a thousand words. But I wonder, what else do “they” say? In order to find out
+            I’ve culled together the best quotes on the subject of photography. I hope they inspire you.</h2>
+
+        <!-- Adding a search form  -->
+        <form class="navbar-form" role="search" action="{% url 'search_category' %}" METHOD="GET">
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Item" name="image" required>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">Go
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</header>
+<br>
+<div class="container-fluid display">
+    <div class="row">
+        {% for image in images %}
+        <div class="col-sm-12 col-md-6 col-lg-3 ">
+
+            <img src="{{image.image.url}}" class="img-fluid img-thumbnail img-responsive" alt="image" height="300px"
+                width="300px" data-toggle="modal" data-target="#id{{image.id}}">
+        </div>
+
+        <div class="modal fade" id="id{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="examplemodal"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center" id="modaltitle">{{image.name}}</h4>
+                        <p>{{image.description}}</p>
+
+                    </div>
+                    <div class="modal-body text-center">
+                        <a href="{{image.image.url}}"><img src="{{image.image.url}}" style="width:100%;max-width:500px"
+                                alt="image"></a>
+                    </div>
+                    <div class="modal-footer">
+
+                        <div class="form-group row">
+                            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-1">
+                                <input type="text" class="form-control w- mx-3" value="{{image.image.url}}"
+                                    id="myInput">
+                                <button class="btn btn-sm btn-outline-info" onclick="myFunction()">Copy</button>
+                            </div>
+                        </div>
+                        <span>Location:{{image.image_location}}</span>
+                        <span>Category:{{image.image_category}}</span>
+                        <button type="button" class="btn btn-sm btn-outline-info" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+</div>
+<script>
+    function myFunction() {
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Copied the url: " + copyText.value);
+    }
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+
+
+{% endblock%}
