@@ -28,6 +28,7 @@ psycopg2==2.8.6
 psycopg2-binary==2.8.6
 psycopg2-pool==1.1
 pyparsing==2.4.6
+python-decouple==3.3
 pytoml==0.1.21
 pytz==2020.4
 redirect-streams==0.1.0
