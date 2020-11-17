@@ -63,3 +63,8 @@ Open the application on your browser `127.0.0.1:8000`.
   
 ## Contact Information   
 If you have any question or contributions, please email me at [kiptoo097@gmail.com] 
+
+
+## License
+ 
+ Licensed under[MIT license](https://github.com/kiptoo-097/Blog-App/blob/master/LICENSE.md)
